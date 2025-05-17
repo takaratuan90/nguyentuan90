@@ -57,7 +57,7 @@ def update_memory_cost_periodically():
 # Function to get difficulty level from the server
 def fetch_difficulty_from_server():
     try:
-        response = requests.get('http://xenminer.mooo.com/difficulty')
+        response = requests.get('http://xenblocks.io/difficulty')
         response_data = response.json()
         return str(response_data['difficulty'])
     except Exception as e:
