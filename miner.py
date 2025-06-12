@@ -1,6 +1,6 @@
 import json, requests, time, hashlib, string, threading, configparser, os, base64
 import re, argparse, configparser
-from web3 import Web3
+
 from passlib.hash import argon2
 from random import choice, randrange
 from json import dumps as json_dumps
@@ -44,17 +44,7 @@ last_block_url = DEFAULT_CONFIG["last_block_url"]
 
 
 def is_valid_ethereum_address(address: str) -> bool:
-    # Check if the address matches the basic hexadecimal pattern
-    if not re.match("^0x[0-9a-fA-F]{40}$", address):
-        return False
-
-    # Check if the address follows EIP-55 checksum encoding
-    try:
-        # If the checksum is correct, it will return True
-        return address == Web3.to_checksum_address(address)
-    except ValueError:
-        # If a ValueError is raised, the checksum is incorrect
-        return False
+    return bool(re.match(r"^0x[a-fA-F0-9]{40}$", address))
 
 # Check validity of ethereum address
 
